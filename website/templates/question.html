@@ -1,0 +1,55 @@
+{% extends 'layout/pg.html' %}
+
+{% block content %}
+<div class="page new_question-page">
+<h1 class="title">{{question.title}}</h1>
+<p class="question-body">{{question.body}}</p>
+<span class="question-author">author : {{question.author.username}}</span>
+<div class="response_container">
+    <h4 class="response_container_heading">Responses</h4>
+    {% if not question.responses.all %}
+    <p class="no_response_format">No response(s) yet</p>
+    {% else %}
+    {% for response in question.get_quest_responses %}
+        {% include 'components/responses.html' with response=response %}
+    {% endfor %}
+    
+    {% endif %}
+</div>
+{% if user.is_authenticated %}
+<form method="POST" action="" class="response-form">
+    {% csrf_token %}
+    <div class="fieldwrapper">
+        <label for="{{response_form.body.id_for_label}}">Your Answer:</label>
+        {{response_form.body}}
+       
+    </div>
+    <input type="submit" value="Send response" class="submit_button">
+</form>
+{% endif %}
+<!-- {{form}} -->
+<!--<form method="POST" action="" class="new_question-form">
+    {% csrf_token %}
+<div class="fieldwrapper">
+    <label for="{{form.title.id_for_label}}">Title:</label>
+    {{form.title}}
+    <span class="error">{{form.title.errors}}</span>
+</div>
+<div class="fieldwrapper">
+    <label for="{{form.body.id_for_label}}">Body:</label>
+    {{form.body}}
+    <span class="error">{{form.body.errors}}</span>
+</div>
+
+{% if form.non_field_errors %}
+<div class="non_form_errors">
+    <span class="error">{{form.non_field_errors.as_ul}} </span>
+
+</div>   
+{% endif %}
+<input type="submit" value="Submit" class="submit_button">
+
+</form>-->
+</div>
+
+{% endblock %}
