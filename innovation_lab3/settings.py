@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-mshvrfj8p&3*8^k09n_ak5!hbpx!4&_d8*om(h4bt)q7ulfm*s
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['cybercrime-discussion-forum-v0.onrender.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
